@@ -23,23 +23,48 @@ class ListNode:
          self.val = val
          self.next = next
 def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-    num1 = 0
-    count = 0
-    temp = l1
+     num1 = 0
+     count = 0
+     temp = l1
 
-    while(temp != None):
-        num1 = num1 + temp.val * (10 ** count)
-        count += 1
-        temp = temp.next
+     while(temp != None):
+          num1 = num1 + temp.val * (10 ** count)
+          count += 1
+          temp = temp.next
 
-    temp = l2
-    count = 0
+     temp = l2
+     count = 0
+     num2 = 0
         
-    while(temp != None):
-        num2 += temp.val * (10 ** count)
-        count += 1
-        temp = temp.next
+     while(temp != None):
+          num2 += temp.val * (10 ** count)
+          count += 1
+          temp = temp.next
 
-    temp.val = num1 + num2
-    return temp
+     result = num1 + num2
+
+     if(result == 0):
+          return ListNode(0)
         
+     head = ListNode(None)
+     temp = head
+
+     while(result > 0):
+          temp.next = ListNode(None)
+          temp.val = result % 10
+          temp = temp.next
+          result //= 10
+
+            
+
+     curr = head
+     prev = None
+
+     while(curr.next):
+          prev = curr
+          curr = curr.next
+        
+     prev.next = None
+
+
+     return head
